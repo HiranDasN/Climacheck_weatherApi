@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"  type="image/x-icon" href="./images/weather-removebg-preview (1).png">
+    <title>ClimaCheck</title>
+    <style>
+        body{
+            background-image:url(./images/bg1.jpg);
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+
+    <div class="header">
+        <div class="logo-box">
+            <div  class="logmv"><img src="./images/logo2.png"  class=" logo" id="lg"></div>
+            <h1 class="name" id="n1">ClimaCheck</h1>
+        </div>
+    </div>
+    <br>
+    <hr>
+
+    <section class="container">
+        <div class="position-relative w-75 mx-auto animated slideInDown">
+            <div class="sox">
+              <input id="srch" class="form-control border-0 rounded-pill w-100 py-2 ps-4 pe-5 mt-3" type="text" placeholder="Search City" style="font-weight: bold; font-family:monospace; text-align: center;">
+              <button type="button"  onclick="searchData()" class="btn btn-primary rounded-pill py-1 px-4 position-absolute top-0 end-0 me-2 buttn" style="margin-top: 3.5px; font-weight: bold;">Search</button>
+            </div>
+        </div>
+        <div class="error">
+          <p>Invalid city name</p>
+        </div>
+    </section>
+
+
+
+    <section class="container-fluid" id="datamain">
+      <div class="container text-center mx-auto">
+        <div class="row mx-auto">
+          <div class="col-4">
+          </div>
+          <div class="col-4">
+            <div class="dwd mx-auto"><h1 class="wd">Weather Details</h1></div>
+          </div>
+          <div class="col-4">
+          </div>
+        </div>
+      </div>
+        <div class="row1">
+
+            <div class="container-box" id="box1">
+              
+              <div class="cntry">
+                <h4>Country</h4>
+                <h5 class="country"></h5>
+              </div>
+             
+              <div class="tmz">
+                <h4>Time  Zone </h4>
+                <h5 class="timezone"></h5>
+              </div>
+
+              <div class="crdtnt">
+                <h3><u>Coordinates</u></h3>
+
+                <div class="log">
+                  <h4>Longitude  </h4>
+                  <h5 class="long"></h5>
+                </div>
+                <div class="laty">
+                  <h4>Lattitude</h4>
+                  <h5 class="lat"></h5>
+                </div>
+              </div>
+                
+            </div>
+                
+
+
+            <div class="container-box"  id="box2">
+
+              <div class="container-img">
+                <img src="images/snow.png" class="wimg">
+            </div>
+           <div class="td">
+              <h2 class="tmpt"></h2>
+              <h6 class="discrpt"></h6> 
+           </div>
+
+             <h6 class="feelike"></h6>
+           <h1 class="city"></h1> 
+            
+            <h5 id="currentDay"></h5>
+            <p id="datetime"></p>   
+
+            </div>
+
+            
+            <div class="container-box" id="box3">
+
+              
+            <div class="windspd">
+              <h4>Wind Speed </h4>
+              <h5 class="winds"></h5>
+            </div>
+
+            <div class="humdt">
+              <h4>Humidity </h4>
+              <h5 class="humidit"></h5>
+            </div>
+
+            <div class="prsr">
+              <h4>Air Pressure </h4>
+              <h5 class="pressr"></h5>
+            </div>
+
+            <div class="mntem">
+              <h4>Min Temprature </h4>
+              <h5 class="mint"></h5>
+            </div>
+
+            <div class="mxtem">
+              <h4>Max Temprature </h4>
+              <h5 class="maxt"></h5>
+            </div>
+                
+            </div>
+    
+    </section>
+
+   </div> 
+</body>
+<script>
+
+
+const searchData=async()=>{
+    const srcval = document.getElementById("srch").value;
+    const apiKey = "753eb2ae9535d7a77601571024160b47";
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${srcval}&appid=${apiKey}&units=metric`
+  if(srcval){
+    const response = await fetch(apiUrl);
+
+    if(response.status == 404){
+      document.querySelector(".error").style.display = "block";
+    }
+    else{
+      document.querySelector(".error").style.display = "none";
+    }
+
+    const data = await response.json();
+    displayData(data);
+    console.log(data);
+
+  }
+  else{
+    alert("Enter  a valid City name")
+  }
+
+      }
+
+    function displayData(data){
+      const wicon = document.querySelector(".wimg"); 
+
+      document.querySelector(".city").innerHTML = data.name;
+      document.querySelector(".tmpt").innerHTML = data.main.temp + " °C";
+      document.querySelector(".feelike").innerHTML = "feels like " + data.main.feels_like + " °C";
+      document.querySelector(".discrpt").innerHTML = data.weather[0].description;
+
+      document.querySelector(".pressr").innerHTML = data.main.pressure +" Pa";
+      document.querySelector(".humidit").innerHTML = data.main.humidity +" %";
+      document.querySelector(".winds").innerHTML = data.wind.speed + " km/h";
+      document.querySelector(".mint").innerHTML = data.main.temp_min + " °C";
+      document.querySelector(".maxt").innerHTML = data.main.temp_max + " °C";
+
+      document.querySelector(".country").innerHTML = data.sys.country;
+      document.querySelector(".timezone").innerHTML = data.timezone + " (UTC)";
+      document.querySelector(".long").innerHTML = data.coord.lon + " °";
+      document.querySelector(".lat").innerHTML = data.coord.lat + " °";
+      
+
+      if(data.weather[0].main == "Clouds"){
+        wicon.src = "images/clouds.png"
+      }
+      else if(data.weather[0].main == "Clear"){
+        wicon.src = "images/clear.png"
+      }
+      else if(data.weather[0].main == "Rain"){
+        wicon.src = "images/rain.png"
+      }
+      else if(data.weather[0].main == "Drizzle"){
+        wicon.src = "images/drizzle.png"
+      }
+      else if(data.weather[0].main == "Mist"){
+        wicon.src = "images/mist.png"
+      }
+      else if(data.weather[0].main == "Haze"){
+        wicon.src = "images/humidity.png"
+      }
+      else if(data.weather[0].main == "Snow"){
+        wicon.src = "images/snow.png"
+      }
+      else if(data.weather[0].main == "Wind"){
+        wicon.src = "images/wind.png"
+      }
+      else if(data.weather[0].main == "Smoke"){
+        wicon.src = "images/mist.png"
+      }
+
+    }
+
+    function getDay() {
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const today = new Date().getDay();
+            const dayOfWeek = days[today];
+            document.getElementById('currentDay').textContent = `${dayOfWeek}`;
+        }
+
+  function updateDateTime() {
+      var currentDate = new Date();
+      var dateTimeString = currentDate.toLocaleString();
+      document.getElementById("datetime").textContent = dateTimeString;
+  }
+
+
+  getDay();
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+</script>
+</html>

@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bangers&family=Black+Ops+One&family=Bungee+Spice&family=DM+Serif+Display&family=Lilita+One&family=Lobster&family=Metal+Mania&family=Permanent+Marker&family=Roboto+Slab&family=Roboto:wght@100&family=Russo+One&family=Sansita:ital@0;1&family=Staatliches&family=Ultra&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.name{
+    font-family: 'Black Ops One', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -98px;
+    color: white;
+}
+.logo{
+    width:120px;
+    margin-right: 330px;
+}
+.logmv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dwd{
+    border-radius: 10px;
+    background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url();
+    width: 300px;
+}
+.wd{
+    text-align: center;
+    font-family: metal mania;
+    color: white;
+    margin-top: 50px;
+}
+.row1{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,auto));
+    grid-gap: 2rem;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+}
+.container-box{
+    font-family: 'DM Serif Display', serif;
+    border: 1px solid rgb(239, 236, 236);
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    transition: all 2s ease 0;
+    cursor: pointer;
+    color: white;
+}
+#box1{
+    padding-top: 29px;
+    padding-bottom: 29px;
+    padding-left:35px ;
+    padding-right:35px ;
+    background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url();
+}
+#box2{
+
+        background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url();
+
+}
+#box3{
+    padding-left:35px ;
+    padding-right:35px ;
+    /* padding-top: 45px;
+    padding-bottom: 45px; */
+    background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url();
+}
+.wimg{
+    width: 170px;
+}
+#datamain{
+    margin-top: -20px;
+}
+.td{
+    margin-left: 9px;
+align-items: center;
+justify-content: center;
+ display: flex;
+}
+.discrpt{
+    padding: 10px;
+}
+.cntry{
+    align-items: center;
+justify-content: center;
+ /* display: flex; */
+}
+.tmz{
+    margin-top: 20px;
+    align-items: center;
+justify-content: center;
+ /* display: flex; */
+}
+.log{
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+     /* display: flex; */
+
+}
+.laty{
+
+    align-items: center;
+justify-content: center;
+ /* display: flex; */
+}
+.windspd{
+    align-items: center;
+justify-content: center;
+ /* display: flex; */
+}
+.humdt{
+    margin-top: 20px;
+    align-items: center;
+justify-content: center;
+ /* display: flex; */
+}
+.prsr{
+    margin-top: 20px;
+    align-items: center;
+justify-content: center;
+ /* display: flex; */
+}
+.mntem{
+    margin-top: 20px;
+    align-items: center;
+justify-content: center;
+ /* display: flex; */
+}
+.mxtem{
+    margin-top: 20px;
+    align-items: center;
+justify-content: center;
+ /* display: flex; */
+}
+.crdtnt{
+    margin-top: 30px;
+}
+.error{
+    text-align: center;
+    margin-top: 5px;
+    margin-right: 21px;
+    color: red;
+    font-weight: bold;
+    font-family:litches;
+    font-size: larger;
+    display: none;
+}
